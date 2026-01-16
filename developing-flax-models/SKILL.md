@@ -19,7 +19,9 @@ This skill helps you develop neural networks using **Flax NNX**, the object-orie
     *   **Automatic (`nnx.jit`)**: Easiest. Use `@nnx.jit` on your update function. Handles mutable state management automatically.
     *   **Functional (`nnx.split`/`nnx.merge`)**: Use for advanced control or when interfacing with pure JAX transformations like `scan` or `vmap` (though `nnx.vmap` exists).
 2.  **Define Loss**: Write a loss function `loss_fn(model, batch)`.
-3.  **Optimizer**: Wrap the model with `nnx.Optimizer(model, tx)`.
+3.  **Optimizer**: Wrap the model with `nnx.Optimizer(model, tx, wrt=nnx.Param)`.
+    > [!WARNING]
+    > **Crucial Change**: As of Flax 0.11.0, the `wrt` argument (e.g., `wrt=nnx.Param`) is **REQUIRED** for `nnx.Optimizer`. Failure to include it will raise a `TypeError`.
 
 ## Core Concepts (Reference)
 

@@ -282,8 +282,8 @@ if __name__ == "__main__":
     # This might be illustrative. I'll just put a placeholder run.
     print("Ensemble/Vmap script loaded.")
 
-## 5. MultiLayerPerceptron (Advanced Module Construction)
-Demonstrates building complex, configurable modules with conditional layers (Normalization, Dropout) using `nnx.List`.
+## 5. MultiLayerPerceptron (Ready-to-Use Template)
+Use this template for a flexible, production-ready MLP with normalization and dropout.
 
 **Source:** [scripts/multi_layer_perceptron.py](scripts/multi_layer_perceptron.py)
 ```python
@@ -300,6 +300,19 @@ from flax import nnx
 from typing import Callable, Optional
 
 class MultiLayerPerceptron(nnx.Module):
+    """
+    A flexible Multi-Layer Perceptron (MLP) module.
+    
+    Args:
+        in_features: Number of input features.
+        out_features: Number of output features.
+        hidden_layers: Number of hidden layers.
+        hidden_units: Number of units in each hidden layer.
+        rngs: nnx.Rngs object for initialization and dropout.
+        activation: Activation function (default: nnx.relu).
+        dropout_rate: Dropout rate (default: 0.0).
+        normalization: Normalization type ("layernorm", "rmsnorm", or None).
+    """
     def __init__(
         self,
         in_features: int,
@@ -350,53 +363,19 @@ class MultiLayerPerceptron(nnx.Module):
 
 if __name__ == "__main__":
     import jax
-    
-    # Setup
-    key = jax.random.key(0)
     rngs = nnx.Rngs(0)
     
-    # Parameters
-    IN_DIM = 10
-    OUT_DIM = 2
-    HIDDEN_LAYERS = 2
-    HIDDEN_UNITS = 32
-    DROPOUT = 0.5
-    
-    # Test 1: LayerNorm
-    print("Initializing MultiLayerPerceptron (LayerNorm)...")
-    model_ln = MultiLayerPerceptron(
-        in_features=IN_DIM,
-        out_features=OUT_DIM,
-        hidden_layers=HIDDEN_LAYERS,
-        hidden_units=HIDDEN_UNITS,
-        dropout_rate=DROPOUT,
+    # Example Usage
+    model = MultiLayerPerceptron(
+        in_features=10,
+        out_features=2,
+        hidden_layers=2,
+        hidden_units=32,
         normalization="layernorm",
         rngs=rngs
     )
     
-    dummy_input = jnp.ones((1, IN_DIM))
-    print(f"LayerNorm Output: {model_ln(dummy_input)}")
-
-    # Test 2: RMSNorm
-    print("\nInitializing MultiLayerPerceptron (RMSNorm)...")
-    model_rms = MultiLayerPerceptron(
-        in_features=IN_DIM,
-        out_features=OUT_DIM,
-        hidden_layers=HIDDEN_LAYERS,
-        hidden_units=HIDDEN_UNITS,
-        dropout_rate=DROPOUT,
-        normalization="rmsnorm",
-        rngs=rngs
-    )
-    print(f"RMSNorm Output: {model_rms(dummy_input)}")
-    
-    # Validation
-    model_ln.train()
-    out_train_1 = model_ln(dummy_input)
-    out_train_2 = model_ln(dummy_input)
-    is_diff = not jnp.allclose(out_train_1, out_train_2)
-    print(f"\nDropout Check (LayerNorm): {is_diff}")
-
-    print("\nSuccess! MultiLayerPerceptron created and verified with normalization switching.")
-```
+    x = jnp.ones((1, 10))
+    y = model(x)
+    print(f"Output: {y}")
 ```
