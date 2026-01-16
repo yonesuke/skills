@@ -14,6 +14,7 @@ Collection of agentic skills for autonomous coding tasks, following the [Skill E
 | [**UV**](uv/SKILL.md) | Fast Python package installer and project manager. |
 | [**Interpolation**](interpolation/SKILL.md) | Techniques for 1D and 2D data interpolation (SciPy, JAX). |
 | [**mHC**](mhc/SKILL.md) | Manifold-Constrained Hyper-Connections for deep transformers. |
+| [**Training MLPs**](training-mlps/SKILL.md) | A skill for defining and training Multi-Layer Perceptrons (MLPs) using Flax NNX. |
 
 ## Usage
 

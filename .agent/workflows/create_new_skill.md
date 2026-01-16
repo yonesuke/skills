@@ -39,3 +39,4 @@ Follow this workflow to create a new skill in `skills/` that complies with [AGEN
 ## 5. Verification
 - [ ] Check total token count of `SKILL.md` (Target: <100 tokens).
 - [ ] Confirm all links in `SKILL.md` and `examples.md` are valid.
+- [ ] Add the new skill to the table in `skills/README.md`.
