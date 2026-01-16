@@ -55,4 +55,4 @@ See [examples.md](examples.md) for detailed code patterns mirrored from the `scr
 *   **Randomness**: Handling Dropout and stochastic layers.
 *   **Training**: Comparison of `nnx.jit` vs Pure JAX loops.
 *   **Functional API**: Using `vmap` and `split`/`merge`.
-*   **MultiLayerPerceptron**: Building complex modules with variable depth and conditional layers.
+
