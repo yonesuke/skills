@@ -15,6 +15,7 @@ Collection of agentic skills for autonomous coding tasks, following the [Skill E
 | [**Interpolation**](interpolation/SKILL.md) | Techniques for 1D and 2D data interpolation (SciPy, JAX). |
 | [**mHC**](mhc/SKILL.md) | Manifold-Constrained Hyper-Connections for deep transformers. |
 | [**Training MLPs**](training-mlps/SKILL.md) | A skill for defining and training Multi-Layer Perceptrons (MLPs) using Flax NNX. |
+| [**Converting Notebooks**](converting-notebooks/SKILL.md) | Converts Jupyter notebooks (.ipynb) to clean, standalone PEP 723 Python scripts runnable with `uv run`. |
 
 ## Usage
 
